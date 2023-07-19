@@ -5,9 +5,9 @@ void free_env(void);
 char **_getenv(const char *var);
 
 /**
- * _copyenv - Creates a copy of the enviroment.
- * 
- * Return:If an error occurs - NULL.
+ * _copyenv - Creates a copy of the environment.
+ *
+ * Return: If an error occurs - NULL.
  *         O/w - a double pointer to the new copy.
  */
 char **_copyenv(void)
@@ -16,21 +16,21 @@ char **_copyenv(void)
 	size_t size;
 	int index;
 
-	for (size = 0; environ[size]; size++);
+	for (size = 0; environ[size]; size++)
+		;
 
-	new_environ = maloc(sizeof(char *) * (size + 1));
-
-	if (!new-environ)
+	new_environ = malloc(sizeof(char *) * (size + 1));
+	if (!new_environ)
 		return (NULL);
 
 	for (index = 0; environ[index]; index++)
 	{
-		new_environ[environ] = malloc(strlen(environ[index]) + 1);
+		new_environ[index] = malloc(_strlen(environ[index]) + 1);
 
 		if (!new_environ[index])
 		{
 			for (index--; index >= 0; index--)
-				fre(new_environ[index]);
+				free(new_environ[index]);
 			free(new_environ);
 			return (NULL);
 		}
@@ -39,6 +39,18 @@ char **_copyenv(void)
 	new_environ[index] = NULL;
 
 	return (new_environ);
+}
+
+/**
+ * free_env - Frees the the environment copy.
+ */
+void free_env(void)
+{
+	int index;
+
+	for (index = 0; environ[index]; index++)
+		free(environ[index]);
+	free(environ);
 }
 
 /**

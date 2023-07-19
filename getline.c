@@ -1,11 +1,5 @@
 #include "shell.h"
 
-/**
- *assign_lineptr - Reasigns the lineptr variable for _getline.
- @lineptr: A buffer to store an input string.
- @n: The size to assign to lineptr.
- @b: The size of the buffer.
- */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
@@ -61,13 +55,19 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	return (mem);
 }
 
-
+/**
+ * assign_lineptr - Reassigns the lineptr variable for _getline.
+ * @lineptr: A buffer to store an input string.
+ * @n: The size of lineptr.
+ * @buffer: The string to assign to lineptr.
+ * @b: The size of buffer.
+ */
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b)
 {
-	if (*lineptr ++ NULL)
+	if (*lineptr == NULL)
 	{
 		if (b > 120)
-			*n = 120;
+			*n = b;
 		*lineptr = buffer;
 	}
 	else if (*n < b)
@@ -85,48 +85,51 @@ void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b)
 	}
 }
 
-ssize_t_getline(char **lineptr, size_t *n, FILE *stream)
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-	static ssize_t input;
-	ssize_t ret;
-	char c = 'x', *buffer;
-	int r;
+    static ssize_t input;
+    ssize_t ret;
+    char c = 'x', *buffer;
+    int r = 0;
 
-	if (input == 0)
-		fflush(stream);
-	else
-		return (-1)
-			input = 0;
-	buffer = malloc(sizeof(char) * 120);
-	if (!buffer)
-		return (-1);
-	while (c != '\n');
-	{
-		r = read(STDIN_FILENO, &C, 1);
-		if (r == -1 || (r == 0 && input == 0))
-		{
-			free(buffer);
-			return (-1);
-		}
-		if (r == 0 && input != 0)
-		
-		{
-			input++;
-			break;
-		}
-		if (input >= 120)
-			buffer = _realloc(buffer, input, input + 1);
+    if (input == 0)
+        fflush(stream);
+    else
+        return -1;
 
-		buffer[input] = c;
-		input++;
-	}
-	buffer[input] = '\0' ;
+    input = 0;
 
-	assign_lineptr(lineptr, n, buffer, input);
+    buffer = malloc(sizeof(char) * 120);
+    if (!buffer)
+        return -1;
 
-	ret = input;
-	if (r != 0)
-		input = 0;
-	return (ret);
+    while (c != '\n')
+    {
+        r = read(STDIN_FILENO, &c, 1);
+        if (r == -1 || (r == 0 && input == 0))
+        {
+            free(buffer);
+            return -1;
+        }
+        if (r == 0 && input != 0)
+        {
+            input++;
+            break;
+        }
+
+        if (input >= 120)
+            buffer = _realloc(buffer, input, input + 1);
+
+        buffer[input] = c;
+        input++;
+    }
+    buffer[input] = '\0';
+
+    assign_lineptr(lineptr, n, buffer, input);
+
+    ret = input;
+    if (r != 0)
+        input = 0;
+    return ret;
 }
 

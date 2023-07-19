@@ -8,6 +8,17 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <errno.h>
+#define END_OF_FILE -2
+#define EXIT -3
+
+/* Global environemnt */
+extern char **environ;
+/* Global program name */
+char *name;
+/* Global history counter */
+int hist;
+
 
 /**
  * struct list_s - New struct type for defining a linked list
@@ -20,15 +31,7 @@ typedef struct list_s
 	struct list_s *next;
 }list_t;
 
-/* Global environemnt */
-extern char **environ;
-/* Global program name */
-char *name;
-/* Global history counter */
-int hist;
 
-* Global aliases linked list */
-alias_t *aliases;
 
 /* Main Helpers */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
@@ -49,7 +52,6 @@ int run_args(char **args, char **front, int *exe_ret);
 int handle_args(int *exe_ret);
 int check_args(char **args);
 void free_args(char **args, char **front);
-char **replace_aliases(char **args);
 
 /* String functions */
 int _strlen(const char *s);
@@ -60,6 +62,16 @@ char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
+
+/* Builtin Helpers */
+char **_copyenv(void);
+void free_env(void);
+char **_getenv(const char *var);
+
+/* Error Handling */
+int create_error(char **args, int err);
+char *error_126(char **args);
+char *error_127(char **args);
 
 #endif /* _SHELL_H_ */
 
