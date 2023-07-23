@@ -1,7 +1,5 @@
 #include "shell.h"
 
-void sig_handler(int sig);
-
 /**
  * sig_handler - Prints a new prompt upon a signal.
  *@sig: The signal.
@@ -63,8 +61,6 @@ int main(int argc, char *argv[])
 	}
 
 	free_env();
-
-
 
 	return (*exe_ret);
 }

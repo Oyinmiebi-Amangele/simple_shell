@@ -46,5 +46,32 @@ int execute_command(char *command, char **args)
  * or an error code.
  */
 
+int execute(char **args, char **front)
+{
+	int flag = 0, ret = 0;
+	char *command = args[0];
+	(void)front;
 
+	if (command[0] != '/' && command[0] != '.')
+	{
+		flag = 1;
+		command = get_location(command);
+	}
 
+	if (!command || access(command, F_OK) == -1)
+	{
+		if (errno == EACCES)
+			ret = create_error(args, 126);
+		else
+			ret = create_error(args, 127);
+	}
+	else
+	{
+		ret = execute_command(command, args);
+	}
+
+	if (flag)
+		free(command);
+
+	return (ret);
+}
