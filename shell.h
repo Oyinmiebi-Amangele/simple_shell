@@ -1,5 +1,6 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -35,11 +36,13 @@ typedef struct list_s
 
 /* Main Helpers */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void *_realloc(void *ptr, unsigned int old_siz, unsigned int new_siz);
+void assign_lineptr(char **lineptr, size_t *n, char *buff, size_t s);
 char **_strtok(char *line, char *delim);
 char *get_location(char *command);
 list_t *get_path_dir(char *path);
 int execute(char **args, char **front);
+int execute_command(char *command, char **args);
 void free_list(list_t *head);
 char *_itoa(int num);
 

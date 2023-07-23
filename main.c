@@ -6,9 +6,10 @@ void sig_handler(int sig);
  * sig_handler - Prints a new prompt upon a signal.
  *@sig: The signal.
  */
+
 void sig_handler(int sig)
 {
-	char *new_prompt = "\ncisfun $";
+	char *new_prompt = "\nwatts $";
 
 	(void)sig;
 	signal(SIGINT, sig_handler);
@@ -16,7 +17,8 @@ void sig_handler(int sig)
 }
 
 
-/** * main - Runs a simple UNIX command interpreter.
+/**
+ * main - Runs a simple UNIX command interpreter.
  * @argc: The number of arguments supplied to the program.
  * @argv: An array of pointers to the arguments.
  *
@@ -26,9 +28,9 @@ int main(int argc, char *argv[])
 {
 	int ret = 0, retn;
 	int *exe_ret = &retn;
-	char *prompt = "cisfun $ ", *new_line = "\n"; 
-	
-	name =argv[0];
+	char *prompt = "watts $ ", *new_line = "\n";
+
+	name = argv[0];
 	hist = 1;
 	signal(SIGINT, sig_handler);
 
@@ -64,5 +66,5 @@ int main(int argc, char *argv[])
 
 
 
-	return(*exe_ret);
+	return (*exe_ret);
 }
