@@ -24,11 +24,11 @@ void sig_handler(int sig)
  */
 int main(int argc, char *argv[])
 {
-	int ret = 0, retn;
+	int ret = 0, retn, hist;
 	int *exe_ret = &retn;
 	char *prompt = "watts $ ", *new_line = "\n";
 
-	name = argv[0];
+	char *name = argv[0];
 	hist = 1;
 	signal(SIGINT, sig_handler);
 

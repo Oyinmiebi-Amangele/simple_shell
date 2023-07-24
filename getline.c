@@ -58,7 +58,7 @@ void *_realloc(void *ptr, unsigned int old_siz, unsigned int new_siz)
  * @buff: The string to assign to lineptr.
  * @s: The size of buffer.
  */
-void assign_lineptr(char **lineptr, size_t *n, char *buff, size_t s)
+void assign_lineptr(char **lineptr, size_t *n, char *buff, size_t b)
 {
 	if (*lineptr == NULL)
 	{
@@ -118,7 +118,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			break;
 		}
 		if (input >= 120)
-			buff = _realloc(buffer, input, input + 1);
+			buff = _realloc(buff, input, input + 1);
 		buff[input] = c;
 		input++;
 	}

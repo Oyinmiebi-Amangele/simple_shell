@@ -32,7 +32,7 @@ typedef struct list_s
 /* Main Helpers */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void *_realloc(void *ptr, unsigned int old_siz, unsigned int new_siz);
-void assign_lineptr(char **lineptr, size_t *n, char *buff, size_t s);
+void assign_lineptr(char **lineptr, size_t *n, char *buff, size_t b);
 char **_strtok(char *line, char *delim);
 char *get_location(char *command);
 list_t *get_path_dir(char *path);

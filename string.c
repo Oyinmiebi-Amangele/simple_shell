@@ -1,4 +1,4 @@
-#include <shell.h>
+#include "shell.h"
 
 #define MAX_DIGITS 11 /*Maximum number of digits for a 32-bit*/
 
@@ -67,7 +67,7 @@ char *_itoa(int num)
  *
  * Return: The count of the string.
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int count = 0;
 	int i;

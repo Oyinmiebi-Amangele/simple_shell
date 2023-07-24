@@ -79,7 +79,7 @@ char *_strchr(char *s, char c)
  * @accept: accepted bytes.
  * Return: the number of accepted bytes.
  */
-unsigned int _strspn(char *s, char *accept)
+int _strspn(char *s, char *accept)
 {
 	unsigned int i, j, bool;
 
