@@ -40,6 +40,7 @@ int execute(char **args, char **front);
 int execute_command(char *command, char **args);
 void free_list(list_t *head);
 char *_itoa(int num);
+char *reverse_string(char *str);
 
 /* Input Helpers */
 void handle_line(char **line, ssize_t read);

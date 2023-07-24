@@ -60,18 +60,6 @@ char *_itoa(int num)
 	return (reverse_string(buffer));
 }
 
-/**
- * _putchar - writes the character c to stdout
- * @b: The character to print
- *
- * Return: O success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-
-int _putchar(char b)
-{
-	return (write(1, &c, 1));
-}
 
 /**
  * _strlen - function that gives us the length of a string.
@@ -121,4 +109,38 @@ char *_strcat(char *dest, const char *src)
 	}
 
 	return (dest);
+}
+
+/**
+ * _strncmp - Compare two strings up to a specified maximum length
+ * @s1: The first input string
+ * @s2: The second input string
+ * @n: The maximum number of characters to copare
+ *
+ * Return:
+ * An integer less than, equal to, or greater than zero
+ * if the first n characters of s1 are found, respectively,
+ * to be less than, to match, or be greater than the first
+ * an characters of s2.
+ */
+
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	while (n > 0)
+	{
+		if (*s1 != *s2)
+		{
+			return (*s1 - *s2);
+		}
+		if (*s1 == '\0')
+		{
+			break;
+		}
+
+		s1++;
+		s2++;
+		n--;
+	}
+
+	return (0);
 }
