@@ -14,11 +14,14 @@ int handle_args(int *exe_ret)
 	char *args[MAX_ARGS];
 	char *command;
 	int argc = 0;
-	int status;
+	int status, i;
 
 	/*clear the buffer and args array*/
 	_memset(buffer, 0, sizeof(buffer));
-	_memset(args, 0, sizeof(args));
+	for (i = 0; i < MAX_ARGS; i++)
+	{
+		args[i] = NULL;
+	}
 
 	/* Read user input*/
 	if (read_user_input(buffer, BUFSIZE) == END_OF_FILE)
