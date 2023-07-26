@@ -22,11 +22,13 @@ void sig_handler(int sig)
  *
  * Return: The return value of the last executed command.
  */
-int main(int argc, char *argv[] __attribute__((unused)))
+int main(int argc, char *argv[])
 {
 	int ret = 0, retn;
 	int *exe_ret = &retn;
 	char *pmt = "watts $ ", *new_line = "\n";
+
+	char *name = argv[0];
 
 	signal(SIGINT, sig_handler);
 
