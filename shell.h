@@ -10,8 +10,15 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <string.h>
 #define END_OF_FILE -2
 #define EXIT -3
+
+/* Defining the buffsize */
+#define BUFSIZE 4096
+
+/* Defining the max argument */
+#define MAX_ARGS 128
 
 /* Global environemnt */
 extern char **environ;
@@ -41,6 +48,7 @@ int execute_command(char *command, char **args);
 void free_list(list_t *head);
 char *_itoa(int num);
 char *reverse_string(char *str);
+char *concat_paths(char *, char *);
 
 /* Input Helpers */
 void handle_line(char **line, ssize_t read);
@@ -61,11 +69,13 @@ char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
+char *_memset(char *s, char b, unsigned int n);
 
 /* Builtin Helpers */
 char **_copyenv(void);
 void free_env(void);
 char **_getenv(const char *var);
+int _getchar(void);
 
 /* Error Handling */
 int create_error(char **args, int err);

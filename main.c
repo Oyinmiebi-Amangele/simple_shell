@@ -7,11 +7,11 @@
 
 void sig_handler(int sig)
 {
-	char *new_prompt = "\nwatts $";
+	char *new_pmt = "\nwatts $";
 
 	(void)sig;
 	signal(SIGINT, sig_handler);
-	write(STDIN_FILENO, new_prompt, 3);
+	write(STDIN_FILENO, new_pmt, 8);
 }
 
 
@@ -26,9 +26,10 @@ int main(int argc, char *argv[])
 {
 	int ret = 0, retn, hist;
 	int *exe_ret = &retn;
-	char *prompt = "watts $ ", *new_line = "\n";
+	char *pmt = "watts $ ", *new_line = "\n";
 
 	char *name = argv[0];
+
 	hist = 1;
 	signal(SIGINT, sig_handler);
 
@@ -48,7 +49,7 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		write(STDOUT_FILENO, prompt, 2);
+		write(STDOUT_FILENO, pmt, 8);
 		ret = handle_args(exe_ret);
 		if (ret == END_OF_FILE || ret == EXIT)
 		{
