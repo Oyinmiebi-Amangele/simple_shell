@@ -1,4 +1,0 @@
-#!bin/bash
-
-#Ignore swap files
-*.
