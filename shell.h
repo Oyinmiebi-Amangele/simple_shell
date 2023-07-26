@@ -49,6 +49,8 @@ void free_list(list_t *head);
 char *_itoa(int num);
 char *reverse_string(char *str);
 char *concat_paths(char *, char *);
+int tokenize_input(char *input, char **args, int max_args);
+int read_user_input(char *buffer, int size);
 
 /* Input Helpers */
 void handle_line(char **line, ssize_t read);
