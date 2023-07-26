@@ -57,7 +57,7 @@ int read_user_input(char *buffer, int size)
 		buffer[i] = c;
 	}
 	buffer[i] = '\0';
-	if (c == EPF)
+	if (c == EOF)
 		return (END_OF_FILE);
 	return (i);
 }
@@ -75,11 +75,11 @@ int read_user_input(char *buffer, int size)
 
 int tokenize_input(char *input, char **args, int max_args)
 {
-	int args = 0;
+	int argc = 0;
 	char *token;
 
 	token = strtok(input, " \t\n");
-	while (token != NULL & argc < max_args - 1)
+	while (token != NULL && argc < max_args - 1)
 	{
 		args[argc] = token;
 		argc++;
