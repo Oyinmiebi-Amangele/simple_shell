@@ -11,10 +11,11 @@ char *reverse_string(char *str)
 {
 	int length = 0;
 	char temp;
+	int i;
 
 	while (str[length] != '\0')
 		length++;
-	for (int i = 0; i < length / 2; i++)
+	for ( i = 0; i < length / 2; i++)
 	{
 		temp = str[i];
 		str[i] = str[length - i - 1];
