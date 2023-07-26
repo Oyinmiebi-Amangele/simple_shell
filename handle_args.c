@@ -33,7 +33,7 @@ int handle_args(int *exe_ret)
 	command = args[0];
 	/* Handle built-in commands*/
 	if (_strcmp(command, "exit") == 0)
-		return (-EXIT);
+		return (EXIT);
 	/* Execute the command with arguments */
 	status = execute(args, environ);
 
